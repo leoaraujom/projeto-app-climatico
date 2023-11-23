@@ -22,6 +22,12 @@ async function buscarDadosDaCidade(cidade) {
 }
 
 function preencherDadosNaTela(dados, cidade) {
+    cidadeMaiusculo = cidade.split(" ");
+    for (let i = 0; i < cidadeMaiusculo.length; i++) {
+        cidadeMaiusculo[i] = cidadeMaiusculo[i][0].toUpperCase() + cidadeMaiusculo[i].substring(1);     
+    }
+    cidade = cidadeMaiusculo.join(" ");
+
     const temperatura = dados.current.temp_c;
     const condicao = dados.current.condition.text;
     const umidade = dados.current.humidity;
@@ -29,7 +35,7 @@ function preencherDadosNaTela(dados, cidade) {
     const iconeCondicao = dados.current.condition.icon;
 
     document.getElementById("cidade").textContent = cidade;
-
+    
     document.getElementById("temperatura").textContent =  `${temperatura} °C`;
 
     document.getElementById("condicao").textContent = condicao;
